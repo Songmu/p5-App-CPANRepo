@@ -1,0 +1,7 @@
+#!perl
+use strict;
+use warnings;
+use App::CPANRepo;
+App::CPANRepo->run(@ARGV);
+
+
