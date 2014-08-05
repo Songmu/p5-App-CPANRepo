@@ -1,14 +1,20 @@
 # NAME
 
-App::CPANRepo - It's new $module
+App::CPANRepo - Resolve repository of CPAN Module
 
 # SYNOPSIS
 
     use App::CPANRepo;
+    my $obj = App::CPANRepo->new;
+    print $obj->resolve_repo('Module::Name');
 
 # DESCRIPTION
 
-App::CPANRepo is ...
+App::CPANRepo is to resolve repository URL by CPAN module name.
+
+# METHODS
+
+## `$repo_url:Str = $obj->resolve_repo($module_name:Str)`
 
 # LICENSE
 

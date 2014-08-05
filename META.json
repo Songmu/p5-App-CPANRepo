@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Resolve repository of CPAN Module",
    "author" : [
       "Songmu <y.songmu@gmail.com>"
    ],
@@ -42,6 +42,10 @@
       },
       "runtime" : {
          "requires" : {
+            "Class::Accessor::Lite::Lazy" : "0",
+            "Getopt::Long" : "0",
+            "MetaCPAN::Client" : "1.005000",
+            "Pod::Usage" : "0",
             "perl" : "5.008001"
          }
       },
@@ -52,6 +56,17 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Songmu/p5-App-CPANRepo/issues"
+      },
+      "homepage" : "https://github.com/Songmu/p5-App-CPANRepo",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/Songmu/p5-App-CPANRepo.git",
+         "web" : "https://github.com/Songmu/p5-App-CPANRepo"
+      }
+   },
    "version" : "0.01",
    "x_authority" : "cpan:SONGMU"
 }

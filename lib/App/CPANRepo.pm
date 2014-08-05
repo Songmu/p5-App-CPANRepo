@@ -64,7 +64,7 @@ __END__
 
 =head1 NAME
 
-App::CPANRepo - Resolve repositroy of CPAN Module
+App::CPANRepo - Resolve repository of CPAN Module
 
 =head1 SYNOPSIS
 
