@@ -6,6 +6,8 @@ use warnings;
 our $VERSION = "0.01";
 
 use MetaCPAN::Client 1.005000;
+use Getopt::Long ();
+use Pod::Usage ();
 
 use Class::Accessor::Lite::Lazy (
     new => 1,
@@ -32,10 +34,27 @@ sub resolve_repo {
 sub run {
     my ($class, @argv) = @_;
 
-    my $self = $class->new;
-    for my $module (@argv) {
+    my ($opt, $argv) = $class->parse_options(@argv);
+
+    my $self = $class->new(%$opt);
+    for my $module (@$argv) {
         print( ($self->resolve_repo($module) || '') . "\n");
     }
+}
+
+sub parse_options {
+    my ($class, @argv) = @_;
+
+    my $parser = Getopt::Long::Parser->new(
+        config => [qw/posix_default no_ignore_case bundling pass_through auto_help/],
+    );
+
+    local @ARGV = @argv;
+    $parser->getoptions(\my %opt) or Pod::Usage::pod2usage(1);
+    @argv = @ARGV;
+
+    Pod::Usage::pod2usage(1) unless @argv;
+    (\%opt, \@argv);
 }
 
 1;
@@ -45,15 +64,21 @@ __END__
 
 =head1 NAME
 
-App::CPANRepo - It's new $module
+App::CPANRepo - Resolve repositroy of CPAN Module
 
 =head1 SYNOPSIS
 
     use App::CPANRepo;
+    my $obj = App::CPANRepo->new;
+    print $obj->resolve_repo('Module::Name');
 
 =head1 DESCRIPTION
 
-App::CPANRepo is ...
+App::CPANRepo is to resolve repository URL by CPAN module name.
+
+=head1 METHODS
+
+=head2 C<< $repo_url:Str = $obj->resolve_repo($module_name:Str) >>
 
 =head1 LICENSE
 
