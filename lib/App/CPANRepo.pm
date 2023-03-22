@@ -25,6 +25,7 @@ sub resolve_repo {
         my $release = $self->_client->release($module->distribution);
         if ($release->resources->{repository}) {
             $repo = $release->resources->{repository}{url};
+            $repo =~ s{^git://github\.com}{https://github.com};
         }
     };
 
